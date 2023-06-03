@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import { View, TextInput, Button, Alert, StyleSheet } from 'react-native';
 
+import { validateName,validateEmail,validatePassword,validatePhoneNumber,validateOnlyNumbers,validateOnlyAlphabets,validateDate } from './MyValidator';
+
 const App = () => {
+
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -9,44 +12,6 @@ const App = () => {
   const [onlyNumbers, setOnlyNumbers] = useState('');
   const [onlyAlphabets, setOnlyAlphabets] = useState('');
   const [date, setDate] = useState('');
-
-  const validateName = (name) => {
-    const nameRegex = /^[A-Za-z\s]+$/;
-    return nameRegex.test(name);
-  };
-
-  const validateEmail = (email) => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-  };
-
-  const validatePassword = (password) => {
-    // Password must contain at least 8 characters, one uppercase letter, one lowercase letter, and one digit
-    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
-    return passwordRegex.test(password);
-  };
-
-  const validatePhoneNumber = (phoneNumber) => {
-    // Phone number must be 10 digits and can include optional dashes or spaces
-    const phoneNumberRegex = /^\d{3}[-\s]?\d{3}[-\s]?\d{4}$/;
-    return phoneNumberRegex.test(phoneNumber);
-  };
-
-  const validateOnlyNumbers = (onlyNumbers) => {
-    const onlyNumbersRegex = /^\d+$/;
-    return onlyNumbersRegex.test(onlyNumbers);
-  };
-
-  const validateOnlyAlphabets = (onlyAlphabets) => {
-    const onlyAlphabetsRegex = /^[A-Za-z]+$/;
-    return onlyAlphabetsRegex.test(onlyAlphabets);
-  };
-
-  const validateDate = (date) => {
-    // Date must be in the format MM/DD/YYYY and should be a valid date
-    const dateRegex = /^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20)\d{2}$/;
-    return dateRegex.test(date);
-  };
 
   const handleSubmit = () => {
     if (!validateName(name)) {
@@ -89,9 +54,6 @@ const App = () => {
       );
       return;
     }
-
-    // All fields are valid, proceed with form submission or further processing
-    // ...
   };
 
   return (
